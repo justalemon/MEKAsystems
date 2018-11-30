@@ -1,0 +1,1 @@
+https://github.com/Rapptz/discord.py/archive/66e5033785259400d340b8c00eaa8ad60fbbb82a.zip#egg=discord.py
