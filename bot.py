@@ -95,6 +95,8 @@ class MEKAsystems(commands.AutoShardedBot):
 
         # Create an embed to show the commands
         embed = discord.Embed(title="{0} commands".format(ctx.me.name), colour=0x7FD935)
+        # Sets the Bot avatar as the thumbnail
+        embed.set_thumbnail(url=ctx.me.avatar_url)
         # For each command in the list of commands
         for command in coms:
             # Add a field with the command and the description of it
