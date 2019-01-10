@@ -13,13 +13,13 @@ class Admin:
         return ctx.channel.permissions_for(ctx.author).administrator
 
     @commands.command()
-    async def roles(self, ctx, *, ftype="embed"):
+    async def roles(self, ctx, *, ftype="block"):
         """
         Shows the list of roles on the server.
 
         You can set the mode to receive the list of roles:
 
-        1. embed: Shows on an embed (not valid if the message size is higher than 2000)
+        1. block: Shows on a codeblock (not valid if the message size is higher than 2000)
         2. file: Returns a file with the list of roles
         """
         # Create a place to store the readable role format
@@ -39,7 +39,7 @@ class Admin:
             # And send the file
             await ctx.send(file=discord.File(bio, "roles.txt"))
         # Otherwise if the type is embed
-        elif ftype == "embed":
+        elif ftype == "block":
             # Send the data on a codeblock
             await ctx.send("```py\n" + data + "```")
 
