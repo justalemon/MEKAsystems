@@ -1,0 +1,25 @@
+{
+    "name": "MEKAsystems",
+    "description": "Bot created by Lemon with custom gaming and programming addons.",
+    "keywords": [
+        "discord",
+        "bot",
+        "gaming",
+        "programming"
+    ],
+    "repository": "https://github.com/justalemon/MEKAsystems",
+    "env": {
+        "DISCORD_TOKEN": {
+            "description": "Discord token for the Bot.",
+            "required": true
+        },
+        "DISCORD_PREFIX": {
+            "description": "Prefix used for the commands.",
+            "required": false
+        },
+        "MONGODB_URL": {
+            "description": "URL to connect MongoDB. The formats supported are mongodb:// y mongodb+srv://.",
+            "required": false
+        }
+    }
+}
