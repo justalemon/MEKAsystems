@@ -75,7 +75,7 @@ class MEKAsystems(commands.AutoShardedBot):
             # And is numeric
             if uinput.isnumeric():
                 # Set that as index
-                uinput = int(uinput)
+                index = int(uinput)
 
         # Store the index for the first and last command to show
         first = 5 * index
