@@ -13,6 +13,14 @@ class Admin:
         return ctx.channel.permissions_for(ctx.author).administrator
 
     @commands.command()
+    async def purge(self, ctx, numberof=5):
+        """
+        Purges the specified number of commands.
+        """
+        await ctx.channel.purge(limit=numberof)
+        await ctx.send("Purge finished!")
+
+    @commands.command()
     async def roles(self, ctx, *, ftype="block"):
         """
         Shows the list of roles on the server.
