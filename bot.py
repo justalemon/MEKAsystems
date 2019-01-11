@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands
 from motor.motor_asyncio import AsyncIOMotorClient
 
+INVITE = "https://discordapp.com/oauth2/authorize?client_id={0}&scope=bot&permissions=104066247"
+
 logger = logging.getLogger("MEKAsystems")
 
 
@@ -27,6 +29,7 @@ class MEKAsystems(commands.AutoShardedBot):
         self.remove_command("help")
         # And add the stop and new help commands
         self.add_command(self.stop)
+        self.add_command(self.invite)
         self.add_command(self.help)
 
     async def on_command(self, ctx):
@@ -46,6 +49,16 @@ class MEKAsystems(commands.AutoShardedBot):
         """Stops the Bot safely."""
         await ctx.send("Bye!")
         await self.logout()
+
+    @commands.command()
+    async def invite(self, ctx):
+        """
+        Shows an invite link for the Bot.
+        """
+        # Get the application info
+        info = await self.application_info()
+        # And return the invite with the client id
+        await ctx.send(INVITE.format(info.id))
 
     @commands.command()
     async def help(self, ctx, *, uinput=None):
