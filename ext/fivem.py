@@ -44,7 +44,8 @@ class FiveM:
             await ctx.send("We need a text to search.")
             return
         # Get the servers in the format (Server, Ratio)
-        output = [(x, fuzz.partial_ratio(x["Data"]["hostname"].encode("utf-8"), query)) for x in self.servers]
+        output = [(x, fuzz.partial_ratio(x["Data"]["hostname"].encode("utf-8"), query))
+                  for x in self.servers]
         # Order them by ratio
         output = sorted(output, key=lambda server: server[1], reverse=True)
         # If none of the matches are higher than 65 percent, return
