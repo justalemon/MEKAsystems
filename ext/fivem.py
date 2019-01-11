@@ -34,22 +34,22 @@ class FiveM:
         await ctx.send("Done! Check fivem.json for the dumped data.")
 
     @commands.command()
-    async def serverinfo(self, ctx, *, server=None):
+    async def serverinfo(self, ctx, *, query=None):
         """
         Searches a FiveM server and show it's info.
         """
         # If there is no server selected, return
-        if not server:
+        if not query:
             await ctx.send("We need a text to search.")
             return
         # Try to see if there is a server
-        selected = [x for x in self.servers if server.lower() in x["Data"]["hostname"].lower()]
+        output = [x for x in self.servers if query.lower() in x["Data"]["hostname"].lower()]
         # If there was no server found, return
-        if not selected:
+        if not output:
             await ctx.send("No servers found.")
             return
         # Store the server data
-        data = selected[0]["Data"]
+        data = output[0]["Data"]
         # Use regex to remove the FiveM color tags
         title = re.sub(r"\^[0-9]", "", data["hostname"])
         # Create an embed to show the info
@@ -64,7 +64,7 @@ class FiveM:
         embed.add_field(name="Map", value=data["mapname"])
         embed.add_field(name="Resources", value=len(data["resources"]))
         embed.add_field(name="OneSync Enabled", value=data["vars"]["onesync_enabled"])
-        embed.add_field(name="Server IP", value=selected[0]["EndPoint"])
+        embed.add_field(name="Server IP", value=output[0]["EndPoint"])
         # Finally, send the info
         await ctx.send(embed=embed)
 
