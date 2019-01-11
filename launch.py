@@ -4,8 +4,8 @@ import os
 
 from bot import MEKAsystems
 
-logger = logging.getLogger("MEKAsystems")
-logger.setLevel(logging.INFO)
+LOGGER = logging.getLogger("MEKAsystems")
+LOGGER.setLevel(logging.INFO)
 
 
 def run_bot(token, mongourl, prefix):
@@ -13,13 +13,13 @@ def run_bot(token, mongourl, prefix):
     bot = MEKAsystems(prefix, mongourl=mongourl)
 
     # Start loading the extensions
-    logger.info("Loading extensions form 'ext'")
+    LOGGER.info("Loading extensions form 'ext'")
     # For each file in the ext folder
     for file in os.listdir("ext"):
         # If is a Python file
         if file.endswith(".py"):
             # Notify the user that we are loading the extension
-            logger.info("Loading cogs from {0}".format(file))
+            LOGGER.info("Loading cogs from {0}".format(file))
             # And then load the Python file without the extension
             bot.load_extension("ext." + os.path.splitext(file)[0])
 
@@ -36,12 +36,12 @@ def main():
     args = parser.parse_args()
 
     # Add a stream handler for the bot logger
-    logger.addHandler(logging.StreamHandler())
+    LOGGER.addHandler(logging.StreamHandler())
 
     # If the user wants to use the the environment variables
     if args.env:
         # Notify it
-        logger.info("Starting the Bot on environment variables mode")
+        LOGGER.info("Starting the Bot on environment variables mode")
         # Get the values from the environment variables
         token = os.environ.get("DISCORD_TOKEN")
         prefix = os.environ.get("DISCORD_PREFIX", "&")
