@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import json
+import re
 
 import discord
 from discord.ext import commands
@@ -31,6 +32,41 @@ class FiveM:
             json.dump(self.servers, file, sort_keys=True, indent=4)
         # Finally, notify the user about what we have done
         await ctx.send("Done! Check fivem.json for the dumped data.")
+
+    @commands.command()
+    async def serverinfo(self, ctx, *, server=None):
+        """
+        Searches a FiveM server and show it's info.
+        """
+        # If there is no server selected, return
+        if not server:
+            await ctx.send("We need a text to search.")
+            return
+        # Try to see if there is a server
+        selected = [x for x in self.servers if server.lower() in x["Data"]["hostname"].lower()]
+        # If there was no server found, return
+        if not selected:
+            await ctx.send("No servers found.")
+            return
+        # Store the server data
+        data = selected[0]["Data"]
+        # Use regex to remove the FiveM color tags
+        title = re.sub(r"\^[0-9]", "", data["hostname"])
+        # Create an embed to show the info
+        embed = discord.Embed(title="FiveM Server Information", colour=0xD89324)
+        # Calculate how many players are available
+        players = "{0}/{1} ({2} available)".format(data["clients"], data["svMaxclients"],
+                                                   data["svMaxclients"] - data["clients"])
+        # Add the data
+        embed.add_field(name="Server Name", value=title, inline=False)
+        embed.add_field(name="Players", value=players)
+        embed.add_field(name="Gamemode", value=data["gametype"])
+        embed.add_field(name="Map", value=data["mapname"])
+        embed.add_field(name="Resources", value=len(data["resources"]))
+        embed.add_field(name="OneSync Enabled", value=data["vars"]["onesync_enabled"])
+        embed.add_field(name="Server IP", value=selected[0]["EndPoint"])
+        # Finally, send the info
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def fivem(self, ctx):
