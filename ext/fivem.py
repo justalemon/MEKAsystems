@@ -43,15 +43,16 @@ class FiveM:
         if not query:
             await ctx.send("We need a text to search.")
             return
-        # Try to see if there is a server
-        output = [x for x in self.servers if
-                  fuzz.partial_ratio(x["Data"]["hostname"].encode("utf-8"), query) > 65]
-        # If there was no server found, return
-        if not output:
+        # Get the servers in the format (Server, Ratio)
+        output = [(x, fuzz.partial_ratio(x["Data"]["hostname"].encode("utf-8"), query)) for x in self.servers]
+        # Order them by ratio
+        output = sorted(output, key=lambda server: server[1], reverse=True)
+        # If none of the matches are higher than 65 percent, return
+        if not [x for x in output if x[1] > 65]:
             await ctx.send("No servers found.")
             return
         # Store the server data
-        data = output[0]["Data"]
+        data = output[0][0]["Data"]
         # Use regex to remove the FiveM color tags
         title = re.sub(r"\^[0-9]", "", data["hostname"])
         # Create an embed to show the info
@@ -66,7 +67,7 @@ class FiveM:
         embed.add_field(name="Map", value=data["mapname"])
         embed.add_field(name="Resources", value=len(data["resources"]))
         embed.add_field(name="OneSync Enabled", value=data["vars"]["onesync_enabled"])
-        embed.add_field(name="Server IP", value=output[0]["EndPoint"])
+        embed.add_field(name="Server IP", value=output[0][0]["EndPoint"])
         # Finally, send the info
         await ctx.send(embed=embed)
 
