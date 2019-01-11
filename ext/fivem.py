@@ -4,6 +4,7 @@ import json
 import re
 
 import discord
+from fuzzywuzzy import fuzz
 from discord.ext import commands
 
 API = "https://servers-live.fivem.net/api/servers/"
@@ -43,7 +44,8 @@ class FiveM:
             await ctx.send("We need a text to search.")
             return
         # Try to see if there is a server
-        output = [x for x in self.servers if query.lower() in x["Data"]["hostname"].lower()]
+        output = [x for x in self.servers if
+                  fuzz.partial_ratio(x["Data"]["hostname"].encode("utf-8"), query) > 65]
         # If there was no server found, return
         if not output:
             await ctx.send("No servers found.")
