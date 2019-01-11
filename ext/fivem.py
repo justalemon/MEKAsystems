@@ -4,6 +4,7 @@ import json
 import re
 
 import discord
+from aiohttp import ContentTypeError
 from fuzzywuzzy import fuzz
 from discord.ext import commands
 
@@ -98,8 +99,11 @@ class FiveM:
         while not self.bot.is_closed():
             # Get the servers from the API
             async with self.bot.http._session.get(API) as resp:
-                # And store the servers
-                self.servers = await resp.json()
+                # And try store the servers
+                try:
+                    self.servers = await resp.json()
+                except ContentTypeError:
+                    LOGGER.error("Unable to get the FiveM Servers. Maybe the JSON is not valid?")
             # Log that we have refreshed the FiveM Server list
             LOGGER.info("FiveM Server list has been updated")
             # Once is completed, wait 60 seconds until we try again
