@@ -38,8 +38,9 @@ class MEKAsystems(commands.AutoShardedBot):
 
     async def on_ready(self):
         """Notify the Bot Owner when we are ready to work."""
-        logger.info("Ready to work! The prefix is '{0}'".format(self.command_prefix))
-        # And change the presence to the help command
+        info = await self.application_info()
+        logger.info(f"Ready to work! The prefix is '{self.command_prefix}' and ID is '{info.id}'")
+        # Change the presence to the help command
         game = discord.Game("{0}help".format(self.command_prefix))
         await self.change_presence(activity=game)
 
