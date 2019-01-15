@@ -13,6 +13,7 @@ XPATH_TITLE = "//span[@id='titletextonly']/text()"
 XPATH_IMAGE = "//div[@class='slide first visible']//img[1]/@src"
 XPATH_LOC = "//span[@class='postingtitletext']//small[1]/text()"
 XPATH_TIME = "//div[@class='postinginfos']//time[@class='date timeago']/@datetime"
+XPATH_TEXT = "//section[@id='postingbody']/text()"
 
 LOGGER = logging.getLogger("MEKAsystems")
 
@@ -43,7 +44,7 @@ class Craigslist:
                 LOGGER.error(f"Unable to get '{match.group()}'")
 
         # Format the values correctly
-        desc = "\n".join([x for x in parser.xpath("//section[@id='postingbody']/text()")])
+        desc = "\n".join([x.replace("\n", "") for x in parser.xpath(XPATH_TEXT)])
         posted = datetime.strptime(parser.xpath(XPATH_TIME)[0], DATE_IN)
         # updated = datetime.strptime(parser.xpath(XPATH_TIME)[1], DATE_IN)
         # Create an embed to show the product information
