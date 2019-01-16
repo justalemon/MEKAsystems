@@ -16,8 +16,13 @@ class Player:
         """
         # If the user has a voice state
         if ctx.author.voice:
-            # Join the user channel
-            await ctx.author.voice.channel.connect()
+            # Check if the bot is on a voice channel
+            if ctx.voice_client:
+                # If it does, move the bot
+                await ctx.voice_client.move_to(ctx.author.voice.channel)
+            else:
+                # Otherwise, join the channel as usual
+                await ctx.author.voice.channel.connect()
         # Otherwise, notify the user
         else:
             await ctx.send("You are not using a voice channel.")
