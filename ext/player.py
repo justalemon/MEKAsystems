@@ -23,7 +23,7 @@ FFMPEG_OPTS = {
 YTDL = youtube_dl.YoutubeDL(YTDL_OPTS)
 
 
-class YTDLSource(discord.PCMVolumeTransformer):
+class AudioSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.5):
         # Initialize the PCMVolumeTransformer with the source and volume
         super().__init__(source, volume)
@@ -71,7 +71,7 @@ class Player:
         # Start typing
         async with ctx.typing():
             # Create a player with the user URL
-            player = await YTDLSource.from_url(url, loop=self.bot.loop)
+            player = await AudioSource.from_url(url, loop=self.bot.loop)
             # And play that
             ctx.voice_client.play(player)
 
@@ -91,7 +91,7 @@ class Player:
         # Start typing
         async with ctx.typing():
             # Create a player from the loop
-            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
+            player = await AudioSource.from_url(url, loop=self.bot.loop, stream=True)
             # And play that stream
             ctx.voice_client.play(player)
 
