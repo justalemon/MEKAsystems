@@ -18,13 +18,14 @@ Most of the time, is running via automatic deployments on Heroku with a free Dyn
 * [FuzzyWuzzy](https://github.com/seatgeek/fuzzywuzzy) 0.17.0 or higher ([python-Levenshtein](https://github.com/ztane/python-Levenshtein) is optional but recommended)
 * [lxml](https://github.com/lxml/lxml) 4.3.0 or higher
 * [youtube-dl](https://github.com/rg3/youtube-dl) 2019.1.16 or higher
+* [python-dotenv](https://github.com/theskumar/python-dotenv) 0.10.1 or higher (if you plan to run the bot manually)
 
 ## Install
 
-* Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (login not requried)
-* Clone the repo or download the ZIP
 * Create a `.env` file with the configuration values (see below)
-* Run `heroku local`
+* Then, you have two options:
+  * Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and run `heroku local` (login not requried)
+  * Run `python launch.py --env --manual`
 
 ## Configuration
 

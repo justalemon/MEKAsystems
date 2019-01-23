@@ -2,6 +2,8 @@ import argparse
 import logging
 import os
 
+from dotenv import load_dotenv, find_dotenv
+
 from bot import MEKAsystems
 
 LOGGER = logging.getLogger("MEKAsystems")
@@ -30,6 +32,8 @@ def run_bot(token, mongourl, prefix):
 def main():
     # Create an argument parser with the required arguments
     parser = argparse.ArgumentParser()
+    parser.add_argument("--manual", dest="manual", action="store_true",
+                        help="if the .env file should be manually loaded")
     parser.add_argument("--env", dest="env", action="store_true",
                         help="if the Bot should be configured with the environment variables")
     # And parse those arguments
@@ -37,6 +41,11 @@ def main():
 
     # Add a stream handler for the bot logger
     LOGGER.addHandler(logging.StreamHandler())
+
+    # If the user wants to manually load .env
+    if args.manual:
+        # DO IT, JUST DO IT
+        load_dotenv(find_dotenv())
 
     # If the user wants to use the the environment variables
     if args.env:
