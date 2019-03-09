@@ -2,5 +2,4 @@ https://github.com/Rapptz/discord.py/archive/7f4c57dd5ad20b7fa10aea485f674a4bc24
 motor==2.0.0
 fuzzywuzzy[speedup]==0.17.0
 lxml==4.3.0
-youtube-dl==2019.1.16
 python-dotenv==0.10.1
