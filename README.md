@@ -1,14 +1,17 @@
-# MEKAsystems
-
-[![Heroku](https://img.shields.io/badge/heroku-deploy-79589F.svg)](https://heroku.com/deploy?template=https://github.com/justalemon/MEKAsystems)
-[![CodeFactor](https://www.codefactor.io/repository/github/justalemon/ggov/badge)](https://www.codefactor.io/repository/github/justalemon/ggov)
-[![Discord](https://img.shields.io/badge/discord-join-7289DA.svg)](https://discord.gg/Cf6sspj)
-
+<div align="center">
+<!-- <img src="https://raw.githubusercontent.com/justalemon/MEKAsystems/master/logo.png" width="750" /> -->
+<br><br>
+<a href="https://heroku.com/deploy?template=https://github.com/justalemon/MEKAsystems"><img src="https://img.shields.io/badge/heroku-deploy-79589F.svg"></a>
+<a href="https://www.codefactor.io/repository/github/justalemon/mekasystems"><img src="https://www.codefactor.io/repository/github/justalemon/mekasystems/badge"></a>
+<a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&repo=justalemon/MEKAsystems"></a>
+<a href="https://discord.gg/Cf6sspj"><img src="https://img.shields.io/badge/discord-join-7289DA.svg"></a>
+<br><br>
 This is Discord a Bot created by me to be used in gaming and programming servers.
-
+<br>
 Most of the time, is running via automatic deployments on Heroku with a free Dyno (not ideal, but it works).
-
-![Preview](https://raw.githubusercontent.com/justalemon/MEKAsystems/master/preview.png)
+<br><br>
+<img src="https://raw.githubusercontent.com/justalemon/MEKAsystems/master/preview.png"/>
+</div>
 
 ## Prerequisites
 
@@ -26,7 +29,3 @@ Most of the time, is running via automatic deployments on Heroku with a free Dyn
 * Then, you have two options:
   * Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and run `heroku local` (login not requried)
   * Run `python launch.py --env --manual`
-
-## Configuration
-
-To configure the Bot, edit or create a `.env` file and set the respective [configuration values](https://github.com/justalemon/MEKAsystems/blob/master/app.json#L23-L34).
