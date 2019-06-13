@@ -13,6 +13,23 @@ class GitHub(commands.Cog):
     def __init__(self, bot):
         self.bot: MEKAsystems = bot
 
+    def get_issue_color(self, issue: dict, ispr: bool):
+        """
+        Returns the issue color for the embed based on the open/closed/merged status.
+        """
+        # If the issue is open
+        if issue["state"] == "open":
+            # Return green
+            return 0x2CBE4E
+        # If the issue is closed and this is a pull request
+        elif issue["state"] == "closed" and ispr:
+            # Return purple
+            return 0x6F42C1
+        # Otherwise
+        else:
+            # Return red
+            return 0xCB2431
+
     @commands.command()
     async def issue(self, ctx: commands.Context, user: str, repo: str, number: str):
         """
@@ -38,6 +55,7 @@ class GitHub(commands.Cog):
         embed.title = json["title"]
         embed.description = json["body"]
         embed.set_thumbnail(url=json["user"]["avatar_url"])
+        embed.color = self.get_issue_color(json, "pull_request" in json)
 
         # If this is a pull request
         if "pull_request" in json:
