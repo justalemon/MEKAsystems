@@ -34,7 +34,7 @@ class GitHub(commands.Cog):
         # Create an embed
         embed = discord.Embed()
         # Set the data of the embed
-        embed.url = json["url"]
+        embed.url = json["html_url"]
         embed.title = json["title"]
         embed.description = json["body"]
         embed.set_thumbnail(url=json["user"]["avatar_url"])
