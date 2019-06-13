@@ -1,5 +1,6 @@
 import logging
 
+import aiohttp
 import discord
 from discord.ext import commands
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -23,6 +24,9 @@ class MEKAsystems(commands.AutoShardedBot):
 
         # Initialize a normal Auto Sharded Bot
         super().__init__(*args, **kwargs)
+
+        # Finally create the aiohttp client
+        self.session = aiohttp.ClientSession(loop=self.loop)
 
     async def on_command(self, ctx):
         """Notify the Bot Owner when someone executes a command."""
