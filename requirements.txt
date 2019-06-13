@@ -1,6 +1,6 @@
-https://github.com/Rapptz/discord.py/archive/8db7b5eb19fb2a9ad52e291719abf67ba040ac0f.zip#egg=discord.py[voice]
+discord.py==1.2.2
 motor==2.0.0
-fuzzywuzzy[speedup]==0.17.0
-lxml==4.3.2
-python-dotenv==0.10.1
 dnspython==1.16.0
+fuzzywuzzy[speedup]==0.17.0
+lxml==4.3.4
+python-dotenv==0.10.1

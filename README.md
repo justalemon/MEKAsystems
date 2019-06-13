@@ -16,11 +16,11 @@ Most of the time, is running via automatic deployments on Heroku with a free Dyn
 ## Prerequisites
 
 * Python 3.6 or higher
-* [Discord.py](https://github.com/Rapptz/discord.py) 7f4c57dd5ad20b7fa10aea485f674a4bc24b9547 or higher
+* [Discord.py](https://github.com/Rapptz/discord.py) 1.2.2 or higher
 * [Motor](https://github.com/mongodb/motorpy) 2.0.0 or higher
+* [dnspython](https://github.com/rthalley/dnspython) 1.16.0 or higher
 * [FuzzyWuzzy](https://github.com/seatgeek/fuzzywuzzy) 0.17.0 or higher ([python-Levenshtein](https://github.com/ztane/python-Levenshtein) is optional but recommended)
-* [lxml](https://github.com/lxml/lxml) 4.3.0 or higher
-* [youtube-dl](https://github.com/rg3/youtube-dl) 2019.1.16 or higher
+* [lxml](https://github.com/lxml/lxml) 4.3.4 or higher
 * [python-dotenv](https://github.com/theskumar/python-dotenv) 0.10.1 or higher (if you plan to run the bot manually)
 
 ## Install
