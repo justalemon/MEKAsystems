@@ -18,7 +18,7 @@ XPATH_TEXT = "//section[@id='postingbody']/text()"
 LOGGER = logging.getLogger("MEKAsystems")
 
 
-class Craigslist:
+class Craigslist(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

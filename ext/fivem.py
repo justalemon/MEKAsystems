@@ -14,7 +14,7 @@ IMAGE = "https://pbs.twimg.com/profile_images/847824193899167744/J1Teh4Di.jpg"
 LOGGER = logging.getLogger("MEKAsystems")
 
 
-class FiveM:
+class FiveM(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.servers = []
